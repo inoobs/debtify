@@ -17,3 +17,6 @@
 .byebug_history
 tags
 .env
+
+# Ignore application configuration
+/config/application.yml
