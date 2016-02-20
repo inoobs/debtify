@@ -54,7 +54,7 @@ group :development do
   gem 'pry-byebug'
   gem 'spring'
   gem 'quiet_assets'
-  gem 'awesome_print', require: 'ap'
+  gem 'awesome_print', require: false
 end
 
 group :production do
