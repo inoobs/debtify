@@ -8,6 +8,8 @@
         %ul.nav.navbar-nav.pull-sm-right
           - if current_user
             %li.nav-item
+              = link_to 'Manage plugins', plugins_path, class: 'btn btn-success'
+            %li.nav-item
               = link_to 'Logout', destroy_user_session_path, method: :delete, class: 'btn btn-danger page-scroll'
           - else
             %li.nav-item
