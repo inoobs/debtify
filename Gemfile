@@ -58,3 +58,10 @@ group :development do
   gem 'quiet_assets'
   gem 'awesome_print', require: 'ap'
 end
+
+group :production do
+  gem 'capistrano', require: false
+  gem 'capistrano-bundler', require: false
+  gem 'capistrano-rails', require: false
+  gem 'capistrano3-puma', github: "seuros/capistrano-puma", require: false
+end
