@@ -1,0 +1,30 @@
+development:
+  adapter:  postgresql
+  host:     localhost
+  encoding: unicode
+  database: debtify_development
+  pool:     5
+  username: debtify
+  password:
+  template: template0
+
+test:
+  adapter:  postgresql
+  host:     localhost
+  encoding: unicode
+  database: debtify_test
+  pool:     5
+  username: debtify
+  password:
+  template: template0
+
+production:
+  adapter:  postgresql
+  host: <%= ENV["DEBTIFY_DBHOST"] %>
+  encoding: unicode
+  database: <%= ENV["DEBTIFY_DBNAME"] %>
+  pool:     10
+  username: <%= ENV["DEBTIFY_DBUSER"] %>
+  password: <%= ENV["DEBTIFY_DBPASSWORD"] %>
+  template: template0
+
