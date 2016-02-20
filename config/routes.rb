@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   # mount ActionCable.server => '/cable'
   #
   authenticated :user do
-    root 'dashboard#index', as: :authenticated_root
+    resources :payables, except: :show
+
+    root 'dashboard#index', as: :dashboard
   end
 
   root 'landing#index'
