@@ -1,5 +1,6 @@
 class PayablesController < ApplicationController
   def index
+    @payables = current_user.payables
   end
 
   def new
