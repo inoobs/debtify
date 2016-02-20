@@ -10,11 +10,11 @@
   .row
     %fieldset.form-group.col-md-3
       = f.label :amount
-      = f.text_field :amount, class: 'form-control', required: true
+      = f.text_field :amount, value: @payable.persisted? ? @payable.next_amount : nil, class: 'form-control', required: true
 
     %fieldset.form-group.col-md-3
       = f.label :due_on
-      = f.text_field :due_on, class: 'form-control', required: true
+      = f.text_field :due_on, value: @payable.persisted? ? @payable.next_due_on : nil, class: 'form-control', required: true
 
     %fieldset.form-group.col-md-3
       = f.label :recurring_type
