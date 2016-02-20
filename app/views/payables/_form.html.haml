@@ -14,7 +14,7 @@
 
     %fieldset.form-group.col-md-3
       = f.label :due_on
-      = f.text_field :due_on, value: @payable.persisted? ? @payable.next_due_on : nil, class: 'form-control', required: true
+      = f.text_field :due_on, value: @payable.persisted? ? @payable.next_due_on.strftime("%d.%m.%Y") : nil, class: 'form-control datepicker', required: true
 
     %fieldset.form-group.col-md-3
       = f.label :recurring_type
@@ -22,7 +22,7 @@
 
     %fieldset.form-group.col-md-3
       = f.label :recurring_ends_on
-      = f.text_field :recurring_ends_on, class: 'form-control'
+      = f.text_field :recurring_ends_on, value: @payable.persisted? ? @payable.recurring_ends_on.try(:strftime, '%d.%m.%Y') : nil, class: 'form-control datepicker'
 
   .form-group
     = f.submit 'Save', class: 'btn btn-primary'
