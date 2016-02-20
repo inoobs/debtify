@@ -4,9 +4,6 @@
 # the maximum value specified for Puma. Default is set to 5 threads for minimum
 # and maximum, this matches the default thread size of Active Record.
 #
-require "dotenv"
-Dotenv.load("#{shared_dir}/.env")
-
 app_dir = File.expand_path("../..", __FILE__)
 shared_dir = "#{app_dir}/../../shared"
 
