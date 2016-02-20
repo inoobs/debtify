@@ -7,6 +7,9 @@
 app_dir = File.expand_path("../..", __FILE__)
 shared_dir = "#{app_dir}/../../shared"
 
+require "dotenv"
+Dotenv.load("#{shared_dir}/.env")
+
 # Change to match your CPU core count
 # grep -c processor /proc/cpuinfo
 workers 2
