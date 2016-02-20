@@ -5,5 +5,9 @@ Rails.application.routes.draw do
   # Serve websocket cable requests in-process
   # mount ActionCable.server => '/cable'
   #
-  root 'dashboard#index'
+  authenticated :user do
+    root 'dashboard#index', as: :authenticated_root
+  end
+
+  root 'landing#index'
 end

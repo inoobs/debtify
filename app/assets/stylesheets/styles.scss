@@ -1,0 +1,37 @@
+//urls
+$url_0: url(bg.jpg);
+
+body {
+  padding-top: 80px;
+}
+
+html#landing_html {
+  height: 100%;
+}
+
+body#landing {
+  height: 100%;
+  padding-top: 10px;
+  background: $url_0 no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+  padding-bottom: 10px;
+  color: #0275D8;
+}
+
+#landing .container {
+  height: 100%;
+  display: table;
+
+  .vertical-center-row {
+    display: table-cell;
+    vertical-align: middle;
+  }
+
+  .jumbotron {
+    background: rgba(236, 238, 239, 0.8);
+  }
+}
+
