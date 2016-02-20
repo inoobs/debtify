@@ -1,0 +1,28 @@
+= form_for @payable do |f|
+  %fieldset.form-group
+    = f.label :name
+    = f.text_field :name, class: 'form-control', autofocus: true, required: true
+
+  %fieldset.form-group
+    = f.label :description
+    = f.text_area :description, class: 'form-control', rows: 5
+
+  .row
+    %fieldset.form-group.col-md-3
+      = f.label :amount
+      = f.text_field :amount, value: @payable.persisted? ? @payable.next_amount : nil, class: 'form-control', required: true
+
+    %fieldset.form-group.col-md-3
+      = f.label :due_on
+      = f.text_field :due_on, value: @payable.persisted? ? @payable.next_due_on : nil, class: 'form-control', required: true
+
+    %fieldset.form-group.col-md-3
+      = f.label :recurring_type
+      = f.select :recurring_type, options_for_select(%i(daily weekly monthly yearly), @payable.recurring_type), { include_blank: 'none' }, { class: 'form-control c-select' }
+
+    %fieldset.form-group.col-md-3
+      = f.label :recurring_ends_on
+      = f.text_field :recurring_ends_on, class: 'form-control'
+
+  .form-group
+    = f.submit 'Save', class: 'btn btn-primary'
