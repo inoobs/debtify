@@ -6,12 +6,14 @@ Rails.application.routes.draw do
   # mount ActionCable.server => '/cable'
   #
   authenticated :user do
-    root 'dashboard#index', as: :authenticated_root
     get '/auth/:provider/callback' => 'plugins#oauth_callback'
 
     get 'plugins/:id/enable' => 'plugins#enable', as: :plugin_enable
     get 'plugins/:id/disable' => 'plugins#disable', as: :plugin_disable
     resources :plugins, only: [:index]
+    resources :payables, except: :show
+
+    root 'dashboard#index', as: :dashboard
   end
 
   root 'landing#index'

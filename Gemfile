@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '>= 5.0.0.beta2', '< 5.1'
 gem 'pg'
@@ -8,6 +7,7 @@ gem 'puma'
 
 # Dezign
 gem 'haml-rails'
+gem 'font-awesome-rails'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
@@ -17,8 +17,7 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.1.0'
 end
 
-# Rails
-gem 'turbolinks'
+gem 'turbolinks', '~> 5.0.0.beta'
 gem 'jbuilder', '~> 2.0'
 # Action Cable dependencies for the Redis adapter
 gem 'redis', '~> 3.0'
@@ -55,4 +54,5 @@ group :development do
   gem 'pry-byebug'
   gem 'spring'
   gem 'quiet_assets'
+  gem 'awesome_print', require: 'ap'
 end

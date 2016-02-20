@@ -20,5 +20,7 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
   google_oauth2: 'Gmailer'
+  date:
+    formats:
+      full: '%e %B %Y'
