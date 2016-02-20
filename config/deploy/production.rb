@@ -6,11 +6,11 @@
 # server 'example.com', user: 'deploy', roles: %w{app db web}, my_property: :my_value
 # server 'example.com', user: 'deploy', roles: %w{app web}, other_property: :other_value
 # server 'db.example.com', user: 'deploy', roles: %w{db}
-server '169.45.235.111', user: 'kilimandzsaro', roles: %w{app db web}
+server '169.45.235.111', user: 'deploy', roles: %w{app db web}
 set :branch, "master"
 set :rails_env, "production"
 set :applicaion, 'debtify' 
-set :deploy_to, "/home/kilimandzsaro/Web/debtify"
+set :deploy_to, "/opt/webapp/debtify"
 
 
 # role-based syntax
