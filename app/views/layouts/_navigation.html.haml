@@ -3,8 +3,14 @@
     = link_to 'Debtify', root_path, class: 'navbar-brand'
     %button.navbar-toggler.hidden-sm-up.pull-right.collapsed{ 'data-target' => '#navcollapse1', 'data-toggle' => 'collapse', type: 'button' } &#9776;
     #navcollapse1.collapse.navbar-toggleable-xs
-      #navbar-scroll
-        %ul.nav.navbar-nav.pull-sm-right
-          - if current_user
-            %li
-              %span.navbar-btn= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'btn btn-danger page-scroll'
+      %ul.nav.navbar-nav.pull-sm-right
+        - if current_user
+          %li.nav-item
+            %span.navbar-btn= link_to 'Manage plugins', plugins_path, class: 'btn btn-success page-scroll'
+          %li.nav-item
+            %span.navbar-btn= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'btn btn-danger page-scroll'
+        - else
+          %li.nav-item
+            %span.navbar-btn= link_to 'Sign up', new_user_registration_path, class: 'btn btn-success'
+          %li.nav-item
+            %span.navbar-btn= link_to 'Log in', new_user_session_path, class: 'btn btn-success'

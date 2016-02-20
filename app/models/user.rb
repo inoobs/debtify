@@ -5,4 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :payables, dependent: :destroy
+  has_many :plugins_users
+  has_many :plugins, through: :plugins_users
 end

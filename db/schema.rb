@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160220095510) do
+ActiveRecord::Schema.define(version: 20160220170145) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,23 @@ ActiveRecord::Schema.define(version: 20160220095510) do
     t.datetime "updated_at",        null: false
     t.index ["recurring_type"], name: "index_payables_on_recurring_type", using: :btree
     t.index ["user_id"], name: "index_payables_on_user_id", using: :btree
+  end
+
+  create_table "plugins", force: :cascade do |t|
+    t.string   "name"
+    t.string   "url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "plugins_users", force: :cascade do |t|
+    t.integer  "plugin_id"
+    t.integer  "user_id"
+    t.json     "data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["plugin_id"], name: "index_plugins_users_on_plugin_id", using: :btree
+    t.index ["user_id"], name: "index_plugins_users_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|

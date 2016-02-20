@@ -1,0 +1,17 @@
+%h1.text-xs-center Available Plugins
+%br
+
+%table.table.table-bordered.table-hover
+  %thead.thead-default
+    %tr
+      %th Name
+      %th Enable / Disable
+  %tbody
+    - @plugins.each do |p|
+      %tr
+        %td= t(p.name)
+        %td
+          - if p.user_enabled?(current_user.id)
+            = link_to 'Disable', plugin_disable_path(p), class: 'btn btn-danger'
+          - else
+            = link_to 'Enable', plugin_enable_path(p), class: 'btn btn-success'
