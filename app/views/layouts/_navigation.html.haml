@@ -1,0 +1,13 @@
+%nav.navbar.navbar-dark.bg-inverse.navbar-fixed-top
+  .container
+    %button.navbar-toggler.hidden-sm-up.pull-right.collapsed{ 'data-target' => '#navcollapse1', 'data-toggle' => 'collapse', type: 'button' } &#9776;
+    #navcollapse1.collapse.navbar-toggleable-xs
+      = link_to root_path, class: 'navbar-brand hidden-sm-down' do
+        %h1 Debtify
+      #navbar-scroll
+        %ul.nav.navbar-nav.pull-xs-right
+          - if current_user
+            = link_to 'Logout', destroy_user_session_path, method: :delete, class: 'navbar-brand hidden-sm-down'
+          - else
+            = link_to 'Sign up', new_user_registration_path, class: 'navbar-brand hidden-sm-down'
+            = link_to 'Log in', new_user_session_path, class: 'navbar-brand hidden-sm-down'

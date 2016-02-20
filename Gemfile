@@ -32,6 +32,9 @@ gem 'redis', '~> 3.0'
 # Authentication
 gem 'devise', github: 'plataformatec/devise'
 
+# Templating
+gem 'haml-rails'
+
 group :development, :test do
   # Rubocop
   gem 'rubocop', require: false
@@ -52,4 +55,5 @@ end
 group :development do
   gem 'web-console', '~> 3.0'
   gem 'spring'
+  gem 'quiet_assets'
 end
