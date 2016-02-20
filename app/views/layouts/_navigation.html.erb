@@ -9,8 +9,11 @@
       <% end %>
       <div id="navbar-scroll">
         <ul class="nav navbar-nav pull-xs-right">
-          <%= link_to root_path, class: 'navbar-brand hidden-sm-down' do %>
-            <h1>bla</h1>
+          <% if current_user %>
+            <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'navbar-brand hidden-sm-down' %>
+          <% else %>
+            <%= link_to 'Sign up', new_user_registration_path, class: 'navbar-brand hidden-sm-down' %>
+            <%= link_to 'Log in', new_user_session_path, class: 'navbar-brand hidden-sm-down' %>
           <% end %>
         </ul>
       </div>
