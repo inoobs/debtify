@@ -2,21 +2,27 @@
   = link_to new_payable_path, class: 'btn btn-primary' do
     = fa_icon :plus, text: 'Add new'
 
-%table.table.table-hover
-  %thead
-    %tr
-      %th
-      %th Name
-      %th Amount
-      %th Next payment
-      %th Last payment
-  %tbody
-    - @payables.each do |payable|
-      %tr.clickable{ data: { href: edit_payable_path(payable) } }
-        %td
-          - if payable.recurring_type.present?
-            = fa_icon :refresh
-        %td= payable.name
-        %td= currency(payable.next_amount)
-        %td= payable.next_due_on.present? ? l(payable.next_due_on, format: :full) : '-'
-        %td= payable.last_due_on.present? ? l(payable.last_due_on, format: :full) : '-'
+- if @payables.none?
+  .jumbotron.text-xs-center
+    %h1 You don't have any bills, start adding them
+- else
+  %h1.text-xs-center Your bills
+  %br
+  %table.table.table-hover
+    %thead
+      %tr
+        %th
+        %th Name
+        %th Next amount
+        %th Next payment
+        %th Last payment
+    %tbody
+      - @payables.each do |payable|
+        %tr.clickable{ data: { href: edit_payable_path(payable) } }
+          %td
+            - if payable.recurring_type.present?
+              = fa_icon :refresh
+          %td= payable.name
+          %td= currency(payable.next_amount)
+          %td= payable.next_due_on.present? ? l(payable.next_due_on, format: :full) : '-'
+          %td= payable.last_due_on.present? ? l(payable.last_due_on, format: :full) : '-'
