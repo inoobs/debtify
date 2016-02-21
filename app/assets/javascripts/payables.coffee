@@ -9,3 +9,5 @@ $(document).on 'turbolinks:load', ->
   $(".datepicker").datepicker({
     format: 'dd.mm.yyyy'
   })
+
+  $(".has-tooltip").tooltip()
