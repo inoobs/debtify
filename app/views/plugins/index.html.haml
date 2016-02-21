@@ -1,7 +1,9 @@
-%h1.text-xs-center Available Plugins
+%h1.text-xs-center
+  %i.fa.fa-plug
+  Available Plugins
 %br
 
-%table.table.table-bordered.table-hover
+%table.table.table-bordered
   %thead.thead-default
     %tr
       %th Name
@@ -12,27 +14,30 @@
         %td= t(p.name)
         %td
           - if p.user_enabled?(current_user.id)
-            = link_to 'Disable', plugin_disable_path(p), class: 'btn btn-danger'
+            = link_to 'Add more', '#collapseOne', class: 'btn btn-success', "data-toggle" => 'collapse', "aria-expanded" => false, "aria-controls" => 'collapseOne'
+            = link_to 'Disable', plugin_disable_path(p), class: 'btn btn-danger', data: { confirm: 'Disabling Plugin will delete all existing Mailers. Are you sure?' }
           - else
             = link_to 'Enable', '#collapseOne', class: 'btn btn-success', "data-toggle" => 'collapse', "aria-expanded" => false, "aria-controls" => 'collapseOne'
-            %div.collapse#collapseOne
-              %br
-              %div.card.card-block
-                = form_tag plugin_enable_path(p), method: :get do
-                  %fieldset.form-group
-                    = label_tag :name, 'Name'
-                    = text_field_tag :name, '', class: 'form-control', required: true
-                  %fieldset.form-group
-                    = label_tag :description, 'Description'
-                    = text_area_tag :description, '', class: 'form-control', required: true, rows: 5
-                  %fieldset.form-group
-                    = label_tag :from, 'Email from'
-                    = email_field_tag :from, '', class: 'form-control', required: true
-                  %fieldset.form-group
-                    = label_tag :due, 'Due date pattern'
-                    = text_field_tag :due, '', class: 'form-control', required: true
-                  %fieldset.form-group
-                    = label_tag :amount, 'Amount identifier'
-                    = text_field_tag :amount, '', class: 'form-control', required: true
-                  .form-group
-                    = button_tag 'Enable', type: :submit, class: 'btn btn-success'
+          %div.collapse#collapseOne
+            %br
+            %div.card.card-block
+              = form_tag plugin_enable_path(p), method: :get do
+                %fieldset.form-group
+                  = label_tag :name, 'Name'
+                  = text_field_tag :name, '', class: 'form-control', required: true
+                %fieldset.form-group
+                  = label_tag :description, 'Description'
+                  = text_area_tag :description, '', class: 'form-control', required: true, rows: 5
+                %fieldset.form-group
+                  = label_tag :from, 'Email from'
+                  = email_field_tag :from, '', class: 'form-control', required: true
+                %fieldset.form-group
+                  = label_tag :due, 'Due date pattern'
+                  = text_field_tag :due, '', class: 'form-control', required: true
+                %fieldset.form-group
+                  = label_tag :amount, 'Amount identifier'
+                  = text_field_tag :amount, '', class: 'form-control', required: true
+                .form-group
+                  = button_tag 'Add', type: :submit, class: 'btn btn-success'
+
+= render 'mailers'

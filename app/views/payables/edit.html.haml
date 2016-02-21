@@ -1,1 +1,66 @@
+- content_for(:page_title) { 'Edit your bill' }
+
 = render 'form'
+
+- if @payable.items.overdue.any?
+  %hr
+  %h2
+    Overdue payments
+    %span.label.label-danger= @payable.items.overdue.size
+  %table.table.table-hover
+    %thead
+      %tr
+        %th Overdue
+        %th Amount
+        %th
+    %tbody
+      - @payable.items.overdue.order(due_on: :asc).each do |item|
+        %tr
+          %td
+            %span.has-tooltip{ title: l(item.due_on, format: :full) }
+              = distance_of_time_in_words_to_now(item.due_on)
+          %td= currency(item.amount)
+          %td
+            = button_to mark_as_paid_payable_item_path(item), method: :patch, class: 'btn btn-success btn-sm' do
+              = fa_icon 'check-circle-o', text: 'Mark as Paid'
+
+- if @payable.items.upcoming.any?
+  %hr
+  %h2
+    Upcoming payments
+    %span.label.label-warning= @payable.items.upcoming.size
+  %table.table.table-hover
+    %thead
+      %tr
+        %th Due in
+        %th Amount
+        %th
+    %tbody
+      - @payable.items.upcoming.order(due_on: :asc).each do |item|
+        %tr
+          %td
+            %span.has-tooltip{ title: l(item.due_on, format: :full) }
+              = distance_of_time_in_words_to_now(item.due_on)
+          %td= currency(item.amount)
+          %td
+            = button_to mark_as_paid_payable_item_path(item), method: :patch, class: 'btn btn-success btn-sm' do
+              = fa_icon 'check-circle-o', text: 'Mark as Paid'
+
+- if @payable.items.paid.any?
+  %hr
+  %h2
+    Paid payments
+    %span.label.label-primary= @payable.items.paid.size
+  %table.table.table-hover
+    %thead
+      %tr
+        %th Paid
+        %th Amount
+    %tbody
+      - @payable.items.paid.order(due_on: :asc).each do |item|
+        %tr
+          %td
+            %span.has-tooltip{ title: l(item.paid_at.to_date, format: :full) }
+              = time_ago_in_words(item.paid_at)
+              ago
+          %td= currency(item.amount)
