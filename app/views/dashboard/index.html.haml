@@ -1,2 +1,25 @@
-.jumbotron.text-xs-center
-  %h1 Dashboard
+- if @overdue_items
+  %h1
+    Overdue payments
+    %span.label.label-danger= @overdue_items.size
+  %table.table.table-hover
+    %thead
+      %tr
+        %th
+        %th Name
+        %th Due on
+        %th Amount
+        %th
+    %tbody
+      - @overdue_items.each do |item|
+        %tr
+          %td
+            - if item.payable.recurring_type.present?
+              = fa_icon :refresh
+          %td= item.payable.name
+          %td= l(item.due_on, format: :full)
+          %td= currency(item.amount)
+          %td
+            = link_to '#', class: 'btn btn-success btn-sm' do
+              = fa_icon 'check-circle-o', text: 'Mark as Paid'
+
