@@ -27,8 +27,8 @@ class PayablesController < ApplicationController
 
     unless @payable.items.today_and_future.any?
       flash.now[:info] = <<-MSG.squish
-        Your bill doesn't have future payments, so only new ones
-        will be created after saving your changes
+        Your bill doesn't have future payments. Only new payments
+        will be created after saving your changes.
       MSG
     end
   end
