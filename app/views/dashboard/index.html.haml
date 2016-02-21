@@ -1,3 +1,7 @@
+- if @overdue_items.none? && @upcoming_items.none?
+  .jumbotron.text-xs-center
+    %h1 No upcoming or overdue payable items
+
 - if @overdue_items.any?
   %h1
     Overdue payments
