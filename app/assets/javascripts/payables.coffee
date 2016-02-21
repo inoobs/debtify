@@ -4,4 +4,8 @@
 
 $(document).on 'turbolinks:load', ->
   $(".clickable").click () ->
-    window.document.location = $(this).data("href");
+    window.document.location = $(this).data("href")
+
+  $(".datepicker").datepicker({
+    format: 'dd.mm.yyyy'
+  })

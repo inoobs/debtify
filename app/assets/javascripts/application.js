@@ -15,4 +15,5 @@
 //= require turbolinks
 //= require tether
 //= require bootstrap
+//= require bootstrap-datepicker
 //= require_tree .

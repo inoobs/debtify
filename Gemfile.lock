@@ -113,6 +113,8 @@ GEM
     bootstrap (4.0.0.alpha3)
       autoprefixer-rails (>= 6.0.3)
       sass (>= 3.4.19)
+    bootstrap-datepicker-rails (1.5.0)
+      railties (>= 3.0)
     builder (3.2.2)
     byebug (8.2.2)
     capistrano (3.4.0)
@@ -336,6 +338,7 @@ PLATFORMS
 DEPENDENCIES
   awesome_print
   bootstrap (~> 4.0.0.alpha3)
+  bootstrap-datepicker-rails
   capistrano
   capistrano-bundler
   capistrano-rails

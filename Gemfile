@@ -13,6 +13,7 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
 gem 'sass-rails', '~> 5.0'
 gem 'bootstrap', '~> 4.0.0.alpha3'
+gem 'bootstrap-datepicker-rails'
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.1.0'
 end
