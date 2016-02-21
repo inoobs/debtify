@@ -1,3 +1,6 @@
+%h1.text-xs-center= yield(:page_title)
+%br
+
 = form_for @payable do |f|
   %fieldset.form-group
     = f.label :name
@@ -10,17 +13,17 @@
   .row
     %fieldset.form-group.col-md-3
       = f.label :amount
-      = f.text_field :amount, value: @payable.persisted? ? @payable.next_amount : nil, class: 'form-control', required: true
+      = f.text_field :amount, value: @payable.persisted? ? currency(@payable.next_amount) : nil, class: 'form-control', required: true
 
-    %fieldset.form-group.col-md-3
+    %fieldset#due-on.form-group.col-md-3
       = f.label :due_on
       = f.text_field :due_on, value: @payable.persisted? ? @payable.next_due_on.strftime("%d.%m.%Y") : nil, class: 'form-control datepicker', required: true
 
-    %fieldset.form-group.col-md-3
+    %fieldset#recurring-type.form-group.col-md-3
       = f.label :recurring_type
       = f.select :recurring_type, options_for_select(recurring_types_collection, @payable.recurring_type), { include_blank: 'None' }, { class: 'form-control c-select' }
 
-    %fieldset.form-group.col-md-3
+    %fieldset#recurring-ends-on.form-group.col-md-3{ style: 'display: none;' }
       = f.label :recurring_ends_on
       = f.text_field :recurring_ends_on, value: @payable.persisted? ? @payable.recurring_ends_on.try(:strftime, '%d.%m.%Y') : nil, class: 'form-control datepicker'
 
