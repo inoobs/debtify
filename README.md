@@ -9,13 +9,13 @@ Do you have enough of managing the payouts in different banks, accounts?
 Do you have enough to forget to pay something in time?
 
 If one of the questions answer is "yes", than you need Deptify.
-Deptify helps you orginize your payouts. 
+Deptify helps you organize your payouts. 
 Deptify helps you easily setup your payments for different accounts.
 With Deptify you can add easily add new payments even if it a one-time or regular payment.
 Deptify sends you notification for the next payment via Gmail or other developed microservice.
 On Deptify you can see all of your payments in one page.
 
-Deptify is fully open source project and the available plug-ins are growing every day.
+Deptify is fully open source project and the plug-ins availability is growing every day.
 
 ## Debtify
 
