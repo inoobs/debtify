@@ -1,0 +1,23 @@
+%h3
+  %i.fa.fa-envelope-o
+  Mailers
+%table.table.table-bordered.table-hover
+  %thead.thead-default
+    %tr
+      %th Plugin
+      %th Name
+      %th description
+      %th E-Mail Account
+      %th Due date pattern
+      %th Amount pattern
+      %th
+  %tbody
+    - @mailers.each do |pu|
+      %tr
+        %td= t(pu.plugin.name)
+        %td= pu.data['name']
+        %td= pu.data['description']
+        %td= pu.data['info']['email']
+        %td= pu.data['due']
+        %td= pu.data['amount']
+        %td= link_to 'Remove', plugins_user_path(pu), method: :delete, class: 'btn btn-danger'
