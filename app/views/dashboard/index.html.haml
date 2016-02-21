@@ -12,7 +12,7 @@
         %th
     %tbody
       - @overdue_items.each do |item|
-        %tr
+        %tr.clickable{ data: { href: edit_payable_path(item.payable) } }
           %td
             - if item.payable.recurring_type.present?
               = fa_icon :refresh
@@ -36,7 +36,7 @@
         %th Amount
     %tbody
       - @upcoming_items.each do |item|
-        %tr
+        %tr.clickable{ data: { href: edit_payable_path(item.payable) } }
           %td
             - if item.payable.recurring_type.present?
               = fa_icon :refresh
