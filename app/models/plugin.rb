@@ -1,6 +1,8 @@
 class Plugin < ApplicationRecord
-  has_many :plugins_users
-  has_many :users, through: :plugins_users
+  has_many :items, foreign_key: 'plugin_id', class_name: 'PluginsUser'
+  has_many :users, through: :items
+
+  scope :mailers, -> { where(plugin_type: 'mail_parser') }
 
   def get_url
     req = HTTP.get("#{url}/enable").body.readpartial
@@ -8,6 +10,6 @@ class Plugin < ApplicationRecord
   end
 
   def user_enabled?(user_id)
-    !plugins_users.find_by(user_id: user_id).nil?
+    !items.find_by(user_id: user_id).nil?
   end
 end
