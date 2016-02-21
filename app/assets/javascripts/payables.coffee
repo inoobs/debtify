@@ -6,6 +6,7 @@ $(document).on "turbolinks:load", ->
   recurringTypeSel = $("#recurring-type select")
   recurringEndGroup = $("#recurring-ends-on")
   recurringEndDatepicker = $("#recurring-ends-on").find ".datepicker"
+  dueOnDatepicker = $("#due-on .datepicker")
 
   $(".clickable").click () ->
     window.document.location = $(this).data "href"
@@ -22,7 +23,12 @@ $(document).on "turbolinks:load", ->
       recurringEndGroup.hide()
       recurringEndDatepicker.datepicker "clearDates"
 
-  $("#due-on .datepicker").datepicker().on "changeDate", (e) ->
+  recurringEndDatepicker.datepicker().on "show", (e) ->
+    date = dueOnDatepicker.datepicker "getDate"
+
+    recurringEndDatepicker.datepicker "setStartDate", date
+
+  dueOnDatepicker.datepicker().on "changeDate", (e) ->
     recurringDate = recurringEndDatepicker.datepicker "getDate"
 
     recurringEndDatepicker.datepicker "setStartDate", e.date
