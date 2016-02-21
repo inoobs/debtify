@@ -4,6 +4,7 @@ class PluginsController < ApplicationController
 
   def index
     @plugins = Plugin.all.select(:name, :id)
+    @mailers = current_user.plugins_users.mailers
   end
 
   def enable
@@ -16,7 +17,7 @@ class PluginsController < ApplicationController
   end
 
   def disable
-    @plugin.plugins_users.find_by(user_id: current_user.id).destroy!
+    @plugin.items.find_by(user_id: current_user.id).destroy!
     redirect_to plugins_path, notice: 'Plugin disabled'
   end
 

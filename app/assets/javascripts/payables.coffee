@@ -39,3 +39,5 @@ $(document).on "turbolinks:load", ->
   recurringTypeSel.trigger "change"
 
   dueOnDatepicker.trigger "blur"
+
+  $(".has-tooltip").tooltip()
