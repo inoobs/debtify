@@ -20,5 +20,7 @@ Rails.application.routes.draw do
     root 'dashboard#index', as: :dashboard
   end
 
+  get :secret, to: 'secret#index'
+
   root 'landing#index'
 end
