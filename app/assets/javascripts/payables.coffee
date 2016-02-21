@@ -23,17 +23,19 @@ $(document).on "turbolinks:load", ->
       recurringEndGroup.hide()
       recurringEndDatepicker.datepicker "clearDates"
 
-  recurringEndDatepicker.datepicker().on "show", (e) ->
+  dueOnDatepicker.on "blur", () ->
+    recurringDate = recurringEndDatepicker.datepicker "getDate"
     date = dueOnDatepicker.datepicker "getDate"
 
-    recurringEndDatepicker.datepicker "setStartDate", date
+    if date != null
+      recurringEndDatepicker.datepicker "setStartDate", date
+
+    if recurringDate != null and date > recurringDate
+      recurringEndDatepicker.datepicker "setDate", date
 
   dueOnDatepicker.datepicker().on "changeDate", (e) ->
-    recurringDate = recurringEndDatepicker.datepicker "getDate"
-
-    recurringEndDatepicker.datepicker "setStartDate", e.date
-
-    if recurringDate != null and e.date > recurringDate
-      recurringEndDatepicker.datepicker "setDate", e.date
+    dueOnDatepicker.trigger "blur"
 
   recurringTypeSel.trigger "change"
+
+  dueOnDatepicker.trigger "blur"
