@@ -20,7 +20,7 @@
           %td= time_ago_in_words(item.due_on)
           %td= currency(item.amount)
           %td
-            = link_to '#', class: 'btn btn-success btn-sm' do
+            = button_to mark_as_paid_payable_item_path(item), method: :patch, class: 'btn btn-success btn-sm' do
               = fa_icon 'check-circle-o', text: 'Mark as Paid'
 
 - if @upcoming_items.any?
@@ -34,6 +34,7 @@
         %th Name
         %th Due in
         %th Amount
+        %th
     %tbody
       - @upcoming_items.each do |item|
         %tr.clickable{ data: { href: edit_payable_path(item.payable) } }
@@ -43,4 +44,7 @@
           %td= item.payable.name
           %td= distance_of_time_in_words_to_now(item.due_on)
           %td= currency(item.amount)
+          %td
+            = button_to mark_as_paid_payable_item_path(item), method: :patch, class: 'btn btn-success btn-sm' do
+              = fa_icon 'check-circle-o', text: 'Mark as Paid'
 
