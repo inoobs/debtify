@@ -7,6 +7,10 @@ class PluginsController < ApplicationController
   end
 
   def enable
+    @pl = PluginsUser.find_or_initialize_by(
+      user_id: current_user.id, plugin_id: @plugin.id
+    )
+    @pl.update!(data: params.to_hash)
     @url = @plugin.get_url
     redirect_to @url
   end
@@ -19,7 +23,21 @@ class PluginsController < ApplicationController
   def oauth_callback
     @pl = PluginsUser.find_or_initialize_by(
       user_id: current_user.id, plugin_id: @plugin.id
-    ).update!(data: request.env['omniauth.auth'])
+    )
+    @pl.update!(data: request.env['omniauth.auth'].merge(@pl.data))
+
+    ## Move this to some method
+    # Make post request to Micro-Service
+    res = HTTP.post("#{@plugin.url}/get_data", json: @pl.data)
+    JSON.parse(res.body.readpartial).each do |debt|
+      data = {}
+      data[:name] = @pl.data['name']
+      data[:description] = @pl.data['description']
+      data[:due_on] = debt['due']
+      data[:amount] = debt['am']
+      PayableService.create(data, current_user)
+    end
+
     redirect_to plugins_path, notice: 'Plugin enabled'
   end
 

@@ -18,5 +18,5 @@
             = fa_icon :refresh
         %td= payable.name
         %td= currency(payable.next_amount)
-        %td= l(payable.next_due_on, format: :full)
+        %td= payable.next_due_on.present? ? l(payable.next_due_on, format: :full) : '-'
         %td= payable.last_due_on.present? ? l(payable.last_due_on, format: :full) : '-'

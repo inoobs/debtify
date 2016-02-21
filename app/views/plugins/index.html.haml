@@ -14,4 +14,25 @@
           - if p.user_enabled?(current_user.id)
             = link_to 'Disable', plugin_disable_path(p), class: 'btn btn-danger'
           - else
-            = link_to 'Enable', plugin_enable_path(p), class: 'btn btn-success'
+            = link_to 'Enable', '#collapseOne', class: 'btn btn-success', "data-toggle" => 'collapse', "aria-expanded" => false, "aria-controls" => 'collapseOne'
+            %div.collapse#collapseOne
+              %br
+              %div.card.card-block
+                = form_tag plugin_enable_path(p), method: :get do
+                  %fieldset.form-group
+                    = label_tag :name, 'Name'
+                    = text_field_tag :name, '', class: 'form-control', required: true
+                  %fieldset.form-group
+                    = label_tag :description, 'Description'
+                    = text_area_tag :description, '', class: 'form-control', required: true, rows: 5
+                  %fieldset.form-group
+                    = label_tag :from, 'Email from'
+                    = email_field_tag :from, '', class: 'form-control', required: true
+                  %fieldset.form-group
+                    = label_tag :due, 'Due date pattern'
+                    = text_field_tag :due, '', class: 'form-control', required: true
+                  %fieldset.form-group
+                    = label_tag :amount, 'Amount identifier'
+                    = text_field_tag :amount, '', class: 'form-control', required: true
+                  .form-group
+                    = button_tag 'Enable', type: :submit, class: 'btn btn-success'
