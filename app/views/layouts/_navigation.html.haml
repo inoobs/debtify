@@ -6,13 +6,23 @@
       %ul.nav.navbar-nav.pull-sm-right
         - if current_user
           %li.nav-item
-            %span.navbar-btn= link_to 'Manage payables', payables_path, class: 'btn btn-success page-scroll'
+            %span.navbar-btn
+              = link_to payables_path, class: 'btn btn-success page-scroll' do
+                = fa_icon 'file-text-o', text: 'Manage payables'
           %li.nav-item
-            %span.navbar-btn= link_to 'Manage plugins', plugins_path, class: 'btn btn-success page-scroll'
+            %span.navbar-btn
+              = link_to plugins_path, class: 'btn btn-success page-scroll' do
+                = fa_icon 'plug', text: 'Manage plugins'
           %li.nav-item
-            %span.navbar-btn= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'btn btn-danger page-scroll'
+            %span.navbar-btn
+              = link_to destroy_user_session_path, method: :delete, class: 'btn btn-danger page-scroll' do
+                = fa_icon 'sign-out', text: 'Logout'
         - else
           %li.nav-item
-            %span.navbar-btn= link_to 'Sign up', new_user_registration_path, class: 'btn btn-success'
+            %span.navbar-btn
+              = link_to new_user_registration_path, class: 'btn btn-success' do
+                = fa_icon 'user-plus', text: 'Sign up'
           %li.nav-item
-            %span.navbar-btn= link_to 'Log in', new_user_session_path, class: 'btn btn-success'
+            %span.navbar-btn
+              = link_to new_user_session_path, class: 'btn btn-success' do
+                = fa_icon 'sign-in', text: 'Log in'

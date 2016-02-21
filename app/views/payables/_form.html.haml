@@ -18,11 +18,12 @@
 
     %fieldset.form-group.col-md-3
       = f.label :recurring_type
-      = f.select :recurring_type, options_for_select(%i(daily weekly monthly yearly), @payable.recurring_type), { include_blank: 'none' }, { class: 'form-control c-select' }
+      = f.select :recurring_type, options_for_select(recurring_types_collection, @payable.recurring_type), { include_blank: 'None' }, { class: 'form-control c-select' }
 
     %fieldset.form-group.col-md-3
       = f.label :recurring_ends_on
       = f.text_field :recurring_ends_on, value: @payable.persisted? ? @payable.recurring_ends_on.try(:strftime, '%d.%m.%Y') : nil, class: 'form-control datepicker'
 
   .form-group
-    = f.submit 'Save', class: 'btn btn-primary'
+    = f.button type: :submit, class: 'btn btn-primary' do
+      = fa_icon :save, text: 'Save'
