@@ -3,7 +3,7 @@ class PayableService
     payable = user.payables.new(
       name: params[:name],
       description: params[:description],
-      recurring_type: params[:recurring_type],
+      recurring_type: params[:recurring_type].presence,
       recurring_ends_on: params[:recurring_ends_on]
     )
 
