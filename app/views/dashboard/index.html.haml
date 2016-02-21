@@ -1,4 +1,4 @@
-- if @overdue_items
+- if @overdue_items.any?
   %h1
     Overdue payments
     %span.label.label-danger= @overdue_items.size
@@ -7,7 +7,7 @@
       %tr
         %th
         %th Name
-        %th Due on
+        %th Overdue
         %th Amount
         %th
     %tbody
@@ -17,9 +17,30 @@
             - if item.payable.recurring_type.present?
               = fa_icon :refresh
           %td= item.payable.name
-          %td= l(item.due_on, format: :full)
+          %td= time_ago_in_words(item.due_on)
           %td= currency(item.amount)
           %td
             = link_to '#', class: 'btn btn-success btn-sm' do
               = fa_icon 'check-circle-o', text: 'Mark as Paid'
+
+- if @upcoming_items.any?
+  %h1
+    Due soon
+    %span.label.label-warning= @upcoming_items.size
+  %table.table.table-hover
+    %thead
+      %tr
+        %th
+        %th Name
+        %th Due in
+        %th Amount
+    %tbody
+      - @upcoming_items.each do |item|
+        %tr
+          %td
+            - if item.payable.recurring_type.present?
+              = fa_icon :refresh
+          %td= item.payable.name
+          %td= distance_of_time_in_words_to_now(item.due_on)
+          %td= currency(item.amount)
 
