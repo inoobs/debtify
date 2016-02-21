@@ -26,6 +26,7 @@ class Payable < ApplicationRecord
   end
 
   def last_due_on
+    return if recurring_type && recurring_ends_on.blank?
     items.last&.due_on
   end
 end
