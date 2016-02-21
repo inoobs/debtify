@@ -13,6 +13,9 @@ Rails.application.routes.draw do
     resources :plugins, only: [:index]
     resources :payables, except: :show
     resources :plugins_users, only: [:destroy]
+    resources :payable_items, only: [] do
+      patch :mark_as_paid, on: :member
+    end
 
     root 'dashboard#index', as: :dashboard
   end
