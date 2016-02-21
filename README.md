@@ -11,7 +11,7 @@ Do you have enough to forget to pay something in time?
 If one of the questions answer is "yes", than you need Deptify.
 Deptify helps you organize your payouts. 
 Deptify helps you easily setup your payments for different accounts.
-With Deptify you can add easily add new payments even if it a one-time or regular payment.
+With Deptify you can easily add new payments even if it a one-time or regular payment.
 Deptify sends you notification for the next payment via Gmail or other developed microservice.
 On Deptify you can see all of your payments in one page.
 
