@@ -41,11 +41,14 @@ if $platform == 'android' or $platform == 'iOS'
     Process.exit(0)  
   end
 else # else create driver instance for desktop browser
-  begin
-    $driver = Selenium::WebDriver.for(:"#{$browser_type}")
-    $driver.manage().window().maximize()
-  rescue Exception => e
-    puts e.message
-    Process.exit(0)
-  end
+  # You can use the code below to lunch the driver, but this code
+  # is in the hooks.rb file to relunch the browser before every scenario
+
+  # begin
+  #   $driver = Selenium::WebDriver.for(:"#{$browser_type}")
+  #   $driver.manage().window().maximize()
+  # rescue Exception => e
+  #   puts e.message
+  #   Process.exit(0)
+  # end
 end
