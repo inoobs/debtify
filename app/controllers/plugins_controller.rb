@@ -3,12 +3,12 @@ class PluginsController < ApplicationController
   before_action :set_plugin, only: [:disable, :enable]
 
   def index
-    @plugins = Plugin.all.select(:name, :id)
+    @plugins = Plugin.all.select(:name, :id, :description)
     @mailers = current_user.plugins_users.mailers
   end
 
   def enable
-    @pl = PluginsUser.find_or_initialize_by(
+    @pl = PluginsUser.new(
       user_id: current_user.id, plugin_id: @plugin.id
     )
     @pl.update!(data: params.to_hash)
@@ -22,9 +22,10 @@ class PluginsController < ApplicationController
   end
 
   def oauth_callback
-    @pl = PluginsUser.find_or_initialize_by(
-      user_id: current_user.id, plugin_id: @plugin.id
-    )
+    @pl = PluginsUser.where(
+      "user_id = ? and plugin_id = ? and (data->>'credentials') is null",
+      current_user.id, @plugin.id
+    ).first_or_initialize
     @pl.update!(data: request.env['omniauth.auth'].merge(@pl.data))
 
     ## Move this to some method

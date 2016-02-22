@@ -7,11 +7,13 @@
   %thead.thead-default
     %tr
       %th Name
+      %th Description
       %th Enable / Disable
   %tbody
     - @plugins.each do |p|
       %tr
         %td= t(p.name)
+        %td= p.description
         %td
           - if p.user_enabled?(current_user.id)
             = link_to 'Add more', '#collapseOne', class: 'btn btn-success', "data-toggle" => 'collapse', "aria-expanded" => false, "aria-controls" => 'collapseOne'
