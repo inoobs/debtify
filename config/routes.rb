@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     get 'plugins/:id/enable' => 'plugins#enable', as: :plugin_enable
     get 'plugins/:id/disable' => 'plugins#disable', as: :plugin_disable
     resources :plugins, only: [:index]
-    resources :payables, except: :show
+    resources :payables, except: :show, path: 'bills'
     resources :plugins_users, only: [:destroy]
     resources :payable_items, only: [] do
       patch :mark_as_paid, on: :member
