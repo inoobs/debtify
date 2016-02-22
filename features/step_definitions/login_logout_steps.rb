@@ -1,6 +1,6 @@
 require 'selenium-webdriver'
 
-Given(/^I am on the Debtify page$/) do
+Given(/^I am on the SmartBill page$/) do
   $driver.get "http://localhost:3000"
 end
 
