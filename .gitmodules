@@ -1,3 +1,4 @@
 [submodule "plugins/gmailer"]
-	path = plugins/gmailer
-	url = git@github.com:inoobs/gmailer.git
+  path = plugins/gmailer
+  url = git@github.com:inoobs/gmailer.git
+  branch = master
