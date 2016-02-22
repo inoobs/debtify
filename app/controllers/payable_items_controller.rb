@@ -1,4 +1,6 @@
 class PayableItemsController < ApplicationController
+  skip_before_filter :verify_authenticity_token, only: :mark_as_paid
+
   def mark_as_paid
     item = current_user.payable_items.find_by(id: params[:id])
     if item && item.update!(paid_at: Time.zone.now)
