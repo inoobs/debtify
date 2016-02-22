@@ -7,6 +7,46 @@ body {
 
 .navbar-brand {
   font-weight: 700;
+  float: none;
+}
+.navbar-nav .nav-item {
+  float: none;
+}
+
+.navbar-divider,
+.navbar-nav .nav-item+.nav-item,
+.navbar-nav .nav-link + .nav-link {
+  padding-top: 10px;
+  margin-left: 0;
+
+  .navbar-nav:first-child {
+    padding-top: 40px;
+  }
+}
+
+.navbar-nav:first-child {
+  padding-top: 15px;
+}
+
+@media (min-width: 34em) {
+  .navbar-nav:first-child {
+    padding-top: 0px;
+  }
+
+  .navbar-brand {
+    float: left;
+  }
+
+  .navbar-nav .nav-item {
+    float: left;
+  }
+
+  .navbar-divider,
+  .navbar-nav .nav-item+.nav-item,
+  .navbar-nav .nav-link + .nav-link {
+    padding-top: 0px;
+    margin-left: 1rem;
+  }
 }
 
 // Landing styles
