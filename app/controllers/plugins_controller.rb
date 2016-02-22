@@ -36,7 +36,7 @@ class PluginsController < ApplicationController
       data[:description] = @pl.data['description']
       data[:due_on] = debt['due']
       data[:amount] = debt['am']
-      PayableService.create(data, current_user)
+      PayableService.create(user: current_user, params: data)
     end
 
     redirect_to plugins_path, notice: 'Plugin enabled'
