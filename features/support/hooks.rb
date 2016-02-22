@@ -3,6 +3,13 @@ require 'selenium-webdriver'
 
 Before do
   # Do something before each scenario.
+  begin
+    $driver = Selenium::WebDriver.for(:"#{$browser_type}")
+    # $driver.manage().window().maximize()
+  rescue Exception => e
+    puts e.message
+    Process.exit(0)
+  end
 end
 
 Before do |scenario|
@@ -12,7 +19,7 @@ Before do |scenario|
 end
 
 After do
-  # Do something after each scenario.
+  $driver.close
 end
 
 After do |scenario|
@@ -21,7 +28,7 @@ After do |scenario|
   # if you use it, you can inspect status with
   # the #failed?, #passed? and #exception methods.
   #Create a directory for storing snapshot
-  dir_path = "./snapshot"
+  dir_path = "./features/screenshots"
   unless Dir.exist?(dir_path)
     Dir.mkdir(dir_path,0777)
     puts "=========Directory is created at #{dir_path}"
@@ -32,11 +39,13 @@ After do |scenario|
     name_of_scenario = time + scenario.name.gsub(/\s+/, "_").gsub("/","_")
     puts "Name of snapshot is #{name_of_scenario}"
     file_path = File.expand_path(dir_path)+'/'+name_of_scenario +'.png'
-    $driver.capture_screenshot(file_path)
+    puts file_path
+    $driver.save_screenshot(file_path)
     puts "Snapshot is taken"
     puts "#===========================================================#"
     puts "Scenario:: #{scenario.name}"
     puts "#===========================================================#"
+    
   end
 
   $driver.close
