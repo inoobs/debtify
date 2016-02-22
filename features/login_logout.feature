@@ -1,10 +1,10 @@
 @login
 
 Feature: Login and logout to and from the webside
-		This test sign up, login and logout as a user of the Debtify
+		This test sign up, login and logout as a user of the SmartBill
 
 		Scenario: Sign up as a new user
-			Given I am on the Debtify page
+			Given I am on the SmartBill page
 			When I press the sign up button
 			And I arrive to the sign up page
 			And I Sign up with random user and "SuperS3cureP@ssword" password
@@ -13,7 +13,7 @@ Feature: Login and logout to and from the webside
 			And I arrive to the main page
 
 		Scenario: Log in as a new user
-			Given I am on the Debtify page
+			Given I am on the SmartBill page
 			When I press the sign in button
 			And I arrive to the sign in page
 			And I Log in with "random@test.test" and "SuperS3cureP@ssword" password
