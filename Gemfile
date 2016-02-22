@@ -48,6 +48,13 @@ group :development, :test do
   gem 'factory_girl_rails', '~> 4.5.0'
 
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  
+  # For testing
+  gem 'cucumber-rails', :require => false
+  gem 'selenium-webdriver', :require => false
+  gem 'selenium-cucumber', :require => false
+  gem 'capybara', :require => false
+  gem 'database_cleaner', :require => false
 end
 
 group :development do

@@ -1,0 +1,13 @@
+---
+# autotest-all: --require features --require lib --format progress features --profile html_report --profile all
+# autotest: --require features --require lib features  
+# default: --format pretty --profile all
+# html: --format html --out features.html
+
+
+default: --profile html_report
+html_report: --format progress --format html --out ./features/html_reports/features_report.html 
+# PROFILES
+console: --require features --require lib features
+login: --tags @login
+payables: --tags @payables

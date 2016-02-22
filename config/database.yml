@@ -11,7 +11,7 @@ development:
   password:
   template: template0
 
-test:
+test: &test
   <<: *default
   database: debtify_test
   pool:     5
@@ -28,3 +28,6 @@ production:
   password: <%= ENV["DEBTIFY_DBPASSWORD"] %>
   template: template0
 
+
+cucumber:
+  <<: *test
